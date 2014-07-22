@@ -1,0 +1,69 @@
+
+<% @activities.each do |a| %>
+<div class="list-group">
+  <div class="list-group-item active">
+	 <% if current_user %>
+	    <h4 class="list-group-item-heading">Title: <%= best_in_place a, :title, :type => :input, :path => user_activity_path(current_user,a) %></h4>
+	    
+	    <p class="list-group-item-text">Description:</p> <%= best_in_place a, :description, :path => user_activity_path(current_user,a)%></p>
+	<%end %>
+		<% if !current_user %>
+		    <h4 class="list-group-item-heading">Title: <%= a.title %></h4>
+		    
+		    <p class="list-group-item-text">Description:</p> <%= a.description%></p>
+		<%end %>
+  </div>
+</div>		
+
+<div >
+			  
+	
+
+	<%= image_tag a.image_url(:thumb) if a.image? %>
+
+ 	<div class="gmaps">
+ 		<%= hidden_field_tag "llat", a.latitude %>
+ 		<%= hidden_field_tag "llng", a.longitude %>
+ 		<div class="map-canvas"></div>	
+ 	</div>
+ 	
+
+
+
+
+<% if a.src %>
+<iframe src="https://youtube.com/embed/<%=a.src%>" ></iframe>
+<% end %>
+
+
+<%= link_to "edit", edit_user_activity_path(current_user , a) if current_user %>
+
+
+	<button class="comment-button btn btn-default"><%= a.comments.count %> Comment</button>
+		<% if user_signed_in? %>
+			<%= form_for :comment, url: user_activity_comments_path(current_user,a), html: {class: "comment-form"} do |f| %>
+				<p>
+				<%= f.label       :commenter %>
+				<%= f.text_field  :commenter %>
+				</p>
+				<p>
+				<%= f.label 	:body %>
+				<%= f.text_area :body %>
+				</p>
+				<p>
+				<%= f.submit %>
+				</p>
+
+				<% a.comments.each do |a1| %>
+					<div class="list-group ">
+				    <h4 class="list-group-item-heading">Commenter: <%= a1.commenter %></h4>
+				    <p class="list-group-item-text">Body: <%= a1.body %></p>
+			  		</div>
+	    		<%end%>
+			<% end %>
+		<%end %>
+    	
+    
+ </div>
+
+<%end%>

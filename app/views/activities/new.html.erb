@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="row card col-md-8">
+			<div class="col-md-9">
+				<%= form_for :activity, url: user_activities_path(@user) do |f| %>
+					<div class="form-group " >
+					<p>
+						<%= f.label       :title %>
+						<%= f.text_field  :title ,class: "form-control"%>
+					</p>
+					</div>
+					<div class="form-group">
+					<p>
+						<%= f.label 	:description %>
+						<%= f.text_area :description ,class: "form-control" %>
+					</p>
+					</div>
+					<div class="form-group">
+					<p>
+				        <%= f.file_field :image %>
+				    </p>
+				  	</div>
+				  	<div class="form-group">
+				    <p>
+					  	<%= f.label :src %>
+					  	<%= f.text_field :src ,class: "form-control"%>
+				    </p>	
+				    </div>
+				    <div class="form-group">
+				    <p>
+				    	Address
+				    	<%= f.text_field :address, class: " add-location form-control"%> <br>
+				   		<%= f.text_field :latitude, id: "llat" ,class: "form-control"%>
+				  		<br>
+				  		<%= f.text_field :longitude, id: "llng" ,class: "form-control"%>
+				    </p>
+				    </div>
+				    <div class="form-group">
+					<p>
+						<%= f.submit  "Save Data", class: "btn btn-primary btn-lg" %>
+					</p>
+					</div>
+				<% end %>				
+
+</div>
+</div>
+</div>

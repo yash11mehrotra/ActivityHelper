@@ -1,0 +1,7 @@
+<h1><%= (@user.email).split("@")[0] %></h1>
+<h1>
+ <%= gravatar_for @user %>
+</h1>
+
+
+<%= button_to "Send me message", root_path, :method => "get",class: "btn btn-primary" %>

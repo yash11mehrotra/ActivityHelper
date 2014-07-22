@@ -1,0 +1,13 @@
+<%= form_for :comment, url: user_activity_comments_path(@user,@activity) do |f| %>
+	<p>
+		<%= f.label       :commenter %>
+		<%= f.text_field  :commenter %>
+	</p>
+	<p>
+		<%= f.label 	:body %>
+		<%= f.text_area :body %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
