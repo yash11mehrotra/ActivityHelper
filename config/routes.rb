@@ -1,4 +1,7 @@
 ActivityHelper::Application.routes.draw do
+ 
+  get "users/show"
+  get "users/index"
   # get "activity/show"
   root "home#homepage"
   devise_for :users
@@ -7,6 +10,7 @@ ActivityHelper::Application.routes.draw do
     resources :activities do
       resources :comments, only: [:new, :create, :show]
     end
+    resource :messages, only: [:new, :create]
   end  
   # resources :activities do
   #   resources :comments, only: [:new, :create, :show]
