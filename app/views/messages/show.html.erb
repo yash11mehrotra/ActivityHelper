@@ -1,0 +1,11 @@
+<div class="container">
+	<ul>
+
+		<% @msg.each do |a| %>
+		<%if (a.sender_id==current_user.id)|| (a.receiver==current_user)%>
+		<li><%= a.body %></li>
+
+		<% end %>
+		<%end%>
+	</ul>	
+</div>
