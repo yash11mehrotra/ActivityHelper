@@ -10,14 +10,14 @@ ActivityHelper::Application.routes.draw do
     resources :activities do
       resources :comments, only: [:new, :create, :show]
     end
-    resource :messages, only: [:new, :create]
+    resource :messages, only: [:new, :create, :show]
   end  
   # resources :activities do
   #   resources :comments, only: [:new, :create, :show]
   # end
    match '/activities/index', to: 'activities#index', via: 'get'
    match '/users/:user_id/profile', to: 'home#profile', via: 'get'
-  
+  match "messages", to: "messages#messages", via: [:get]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 # root to: "home#index"

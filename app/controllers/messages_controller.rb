@@ -19,6 +19,18 @@ class MessagesController < ApplicationController
  	redirect_to root_path
   end
 
+  def show
+
+  	@msg= Message.all
+
+  end
+
+  def messages
+  	
+ 	@msg= Message.all
+
+  end
+
   private
    def check_params
    	params.require(:message).permit(:body)
