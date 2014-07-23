@@ -1,5 +1,6 @@
 ActivityHelper::Application.routes.draw do
  
+
   get "users/show"
   get "users/index"
   # get "activity/show"
@@ -10,7 +11,9 @@ ActivityHelper::Application.routes.draw do
     resources :activities do
       resources :comments, only: [:new, :create, :show]
     end
-    resource :messages, only: [:new, :create, :show]
+    resources :messages, only: [:new, :create, :show] do
+      resources :replies, only: [:new, :create]
+    end 
   end  
   # resources :activities do
   #   resources :comments, only: [:new, :create, :show]

@@ -3,11 +3,11 @@
 one:
   sender_id: 1
   receiver_id: 1
-  body: MyString
-  subject: MyString
+  message_id: 1
+  text: MyString
 
 two:
   sender_id: 1
   receiver_id: 1
-  body: MyString
-  subject: MyString
+  message_id: 1
+  text: MyString

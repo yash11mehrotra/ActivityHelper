@@ -3,9 +3,47 @@
 
 		<% @msg.each do |a| %>
 		<%if (a.sender_id==current_user.id)|| (a.receiver==current_user)%>
-		<li><%= a.body %></li>
-		<li><%= current_user %></li>
+		<li><b><%= a.subject %></b>:<%= a.body %></li>
+		
 		<% end %>
 		<%end%>
+		
 	</ul>	
 </div>
+
+
+   			<div class="container">
+   			<div class="row">
+   				<div class="col-sm-5">
+   					<% @messages.each do |u| %>
+				     <li>
+				     	<%= link_to "#{u.subject}(Initiator > #{u.sender.email})", messages_path(id:u.id) %>
+				     	<span class="pull-right"><%= time_ago_in_words(u.created_at) %> ago.</span>
+				     </li>
+	                <% end %>
+   				</div>
+   				<div class="col-sm-1">
+   				</div>
+
+   				<div class="col-sm-6">
+   					<% if @message %>
+	                	<h4><b class="text-primary"><%= @message.subject %></b></h4>
+	                	<h5><p><%= @message.body %></p></h5>
+	                	<% if @replies.any? %>
+	                		<% @replies.each do |r| %>
+	                			<p><b><%= r.sender.email %>: </b></p><%= r.text %>
+	                			<span class="pull-right"><%= time_ago_in_words(r.created_at) %> ago.</span>
+	                		<% end %>
+	                	<% end %>
+
+	                	
+				    	<%= form_for :reply , url: user_message_replies_path(current_user , @message) do |reply|%>
+							<p>	<%= reply.text_field :text, autocomplete: false, class: "form-control" %> </p>
+							<p> <%= reply.submit "Reply Back", class: "btn btn-primary" %> </p>
+			     		<% end %>
+					<% end %>
+            
+   				</div>
+   			</div>
+               
+            </div>
